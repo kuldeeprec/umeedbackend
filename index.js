@@ -2,12 +2,14 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 8000;
+const cors = require("cors");
 //middleware
 const db = require("./config/mongoose");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const passportJWT = require("./config/passport-jwt-strategy");
 app.use(passport.initialize());
+const cors = require("cors");
 // app.use(passport.session());
 app.use(cookieParser());
 app.use(express.urlencoded());
