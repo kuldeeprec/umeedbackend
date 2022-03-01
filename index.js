@@ -9,7 +9,7 @@ const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const passportJWT = require("./config/passport-jwt-strategy");
 app.use(passport.initialize());
-const cors = require("cors");
+app.use(cors());
 // app.use(passport.session());
 app.use(cookieParser());
 app.use(express.urlencoded());
