@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/umeed");
+mongoose.connect(
+  "mongodb+srv://kuldeep:12345@cluster0.g3fzb.mongodb.net/umeedbackend?retryWrites=true&w=majority"
+);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "Error connecting to MongoDB"));
 
