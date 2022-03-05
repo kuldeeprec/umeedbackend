@@ -46,14 +46,21 @@ module.exports.createSession = async function (req, res) {
       });
     }
 
-    var options = {
-      expires: new Date(Date.now() + 1000000),
-      httpOnly: true,
-      sameSite: "strict",
-    };
-    const token = jwt.sign(user.toJSON(), "kuldeep", { expiresIn: "1000000" });
-    res.cookie("jwt", token, options);
-    return res.send("succes fully login");
+    // var options = {
+    //   expires: new Date(Date.now() + 1000000),
+    //   httpOnly: true,
+    //   sameSite: "strict",
+    // };
+    // const token = jwt.sign(user.toJSON(), "kuldeep", { expiresIn: "1000000" });
+    // res.cookie("jwt", token, options);
+    // return res.send("succes fully login");
+    return res.json(200, {
+      message: "Sign in successful, here is your token, please keep it safe!",
+      data: {
+        user: user,
+        token: jwt.sign(user.toJSON(), "kuldeep", { expiresIn: "1000000" }),
+      },
+    });
   } catch (err) {
     console.log("********", err);
     return res.json(500, {
