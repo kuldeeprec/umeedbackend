@@ -47,7 +47,11 @@ module.exports.getStudent = async function (req, res) {
       });
     }
     return res.json(200, {
-      student: student,
+      message: "Sign in successful, here is your token, please keep it safe!",
+      success: true,
+      data: {
+        student: student,
+      },
     });
   } catch (err) {
     console.log("********", err);
