@@ -39,7 +39,7 @@ module.exports.storeStudent = async function (req, res) {
 
 module.exports.getStudent = async function (req, res) {
   try {
-    let student = await Student.findOne({ rollno: req.body.rollno });
+    let student = await Student.findOne({ rollno: req.query.rollno });
 
     if (!student) {
       return res.json(422, {
