@@ -8,6 +8,7 @@ const db = require("./config/mongoose");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const passportJWT = require("./config/passport-jwt-strategy");
+app.use("/uploads/", express.static(__dirname + "/uploads"));
 app.use(passport.initialize());
 app.use(cors());
 // app.use(passport.session());

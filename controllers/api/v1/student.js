@@ -1,5 +1,6 @@
 const User = require("../../../models/user");
-
+const fs = require("fs");
+const path = require("path");
 const Student = require("../../../models/student");
 module.exports.storeStudent = async function (req, res) {
   try {
@@ -52,6 +53,34 @@ module.exports.getStudent = async function (req, res) {
       data: {
         student: student,
       },
+    });
+  } catch (err) {
+    console.log("********", err);
+    return res.json(500, {
+      message: "Internal Server Error",
+    });
+  }
+};
+module.exports.update = async function (req, res) {
+  try {
+    let student = await Student.findOne({ rollno: req.query.rollno });
+    Student.uploadedAvatar(req, res, function (err) {
+      if (err) {
+        console.log("*****multer err", err);
+      }
+      if (req.file) {
+        // if (student.avatar) {
+        //   fs.unlinkSync(path.join(__dirname, "..", student.avatar));
+        // }
+        //thsi is saving the path of thee uploaded file tinto the avatar field int eh user
+
+        student.avatar = Student.avatarPath + "/" + req.file.filename;
+      }
+      student.save();
+      return res.json(200, {
+        message: "profile updated",
+        success: true,
+      });
     });
   } catch (err) {
     console.log("********", err);

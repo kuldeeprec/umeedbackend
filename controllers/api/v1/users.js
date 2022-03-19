@@ -59,13 +59,13 @@ module.exports.createSession = async function (req, res) {
       success: true,
       data: {
         user: user,
-        token: jwt.sign(user.toJSON(), "kuldeep", { expiresIn: "1000000" }),
+        token: jwt.sign(user.toJSON(), "kuldeep", { expiresIn: "10000000" }),
       },
     });
   } catch (err) {
     console.log("********", err);
     return res.json(500, {
-      message: "Internal Server Error",
+      message: err,
     });
   }
 };
