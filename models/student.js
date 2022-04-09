@@ -55,6 +55,18 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    pincode: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -20,6 +20,10 @@ module.exports.storeStudent = async function (req, res) {
         mobile: req.body.mobile,
         email: req.body.email,
         addressName: req.body.addressName,
+        city: req.body.city,
+        state: req.body.state,
+        country: req.body.country,
+        pincode: req.body.pincode,
       });
       if (newstudent) {
         return res.json(200, {
