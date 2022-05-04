@@ -1,5 +1,6 @@
 const User = require("../../../models/user");
 const Teacher = require("../../../models/teacher");
+const { read } = require("fs");
 module.exports.storeTeacher = async function (req, res) {
   try {
     let teacher = await Teacher.findOne({ email: req.body.email });
@@ -36,7 +37,9 @@ module.exports.storeTeacher = async function (req, res) {
 
 module.exports.getTeacher = async function (req, res) {
   try {
-    let teacher = await Teacher.findOne({ email: req.body.email });
+    let teacher = await Teacher.find({
+      umeedsession: req.query.batch,
+    });
 
     if (!teacher) {
       return res.json(422, {
@@ -44,7 +47,11 @@ module.exports.getTeacher = async function (req, res) {
       });
     }
     return res.json(200, {
-      teacher: teacher,
+      message: "Sign in successful, here is your token, please keep it safe!",
+      success: true,
+      data: {
+        educator: teacher,
+      },
     });
   } catch (err) {
     console.log("********", err);
