@@ -21,7 +21,7 @@ const teacherSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    umeedstart: {
+    umeedsession: {
       type: Date,
       required: true,
     },

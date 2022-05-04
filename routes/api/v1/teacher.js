@@ -7,9 +7,5 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   teacherApi.storeTeacher
 );
-router.get(
-  "/info",
-  passport.authenticate("jwt", { session: false }),
-  teacherApi.getTeacher
-);
+router.get("/info", teacherApi.getTeacher);
 module.exports = router;
