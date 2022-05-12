@@ -20,11 +20,13 @@ module.exports.signup = async function (req, res) {
       if (user) {
         return res.json(200, {
           message: "succesfully sign up",
+          success: true,
         });
       }
     }
     return res.json(401, {
       message: "user already exists",
+      success: false,
     });
   } catch (err) {
     console.error(err);
