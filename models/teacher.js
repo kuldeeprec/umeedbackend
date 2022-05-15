@@ -21,6 +21,9 @@ const teacherSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    certificateid: {
+      type: String,
+    },
     umeedsession: {
       type: Date,
       required: true,

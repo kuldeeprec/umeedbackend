@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 module.exports.signup = async function (req, res) {
   try {
+    console.log(req.body.password, req.body.confirm_password);
     if (req.body.password != req.body.confirm_password) {
       return res.json(401, {
         message: "Invalid password",

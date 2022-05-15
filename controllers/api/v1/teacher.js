@@ -10,6 +10,7 @@ module.exports.storeTeacher = async function (req, res) {
         name: req.body.name,
         avatar: req.body.avatar,
         gender: req.body.gender,
+        certificateid: req.body.certificateid,
         dateofbirth: req.body.dateofbirth,
         umeedsession: req.body.umeedsession,
         class: req.body.class,
