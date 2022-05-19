@@ -50,5 +50,11 @@ router.post(
   classesApi.jnvdata
 );
 router.get("/jnv", classesApi.getjnvdata);
+router.post(
+  "/postnotications",
+  //   passport.authenticate("jwt", { session: false }),
+  classesApi.notifications
+);
+router.get("/postnotications", classesApi.getnotifications);
 
 module.exports = router;

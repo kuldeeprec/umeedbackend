@@ -6,6 +6,7 @@ const Jnv = require("../../../models/jnv");
 const Polytechnic = require("../../../models/polytechnic");
 const Chs = require("../../../models/chs");
 const Jeemain = require("../../../models/jeemain");
+const Notification = require("../../../models/notification");
 module.exports.class9data = async function (req, res) {
   try {
     let class9 = await Class9.create({
@@ -302,11 +303,11 @@ module.exports.getpolytecnicdata = async function (req, res) {
 };
 module.exports.jnvdata = async function (req, res) {
   try {
-    let Jnv = await Jnv.create({
+    let jnv = await Jnv.create({
       data: req.body.data,
       subjet: req.body.subjet,
     });
-    if (Jnv) {
+    if (jnv) {
       return res.json(200, {
         message: " data succesfully",
       });
@@ -322,6 +323,48 @@ module.exports.jnvdata = async function (req, res) {
 module.exports.getjnvdata = async function (req, res) {
   try {
     let data = await Jnv.find();
+
+    if (!data) {
+      return res.json(422, {
+        message: "data is not found in database",
+      });
+    }
+    return res.json(200, {
+      message: "data is found",
+      success: true,
+      data: {
+        data: data,
+      },
+    });
+  } catch (err) {
+    console.log("********", err);
+    return res.json(500, {
+      message: "Internal Server Error",
+    });
+  }
+};
+
+module.exports.notifications = async function (req, res) {
+  try {
+    let notifications = await Notification.create({
+      data: req.body.data,
+    });
+    if (notifications) {
+      return res.json(200, {
+        message: " data succesfully",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.json(500, {
+      message: `${err}`,
+    });
+  }
+};
+
+module.exports.getnotifications = async function (req, res) {
+  try {
+    let data = await Notification.find();
 
     if (!data) {
       return res.json(422, {
